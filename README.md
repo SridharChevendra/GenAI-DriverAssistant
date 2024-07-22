@@ -53,6 +53,7 @@ cd eventBridgeCodeBuild
   ```
   streamlit run front_end_v7.py
   ```
+![UI](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/9a56f81925c150a67897b04dedf8d0ef3f51879f/Builderspace.PNG)
 
 #### 6. Access UI
 * On the Sagemaker studio url copy until default/ and append proxy/8501/

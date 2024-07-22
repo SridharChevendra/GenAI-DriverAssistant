@@ -2,7 +2,7 @@
 
 Building a Digital Driver Assistant with Generative AI model.
 
-![Proposed Architecture](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/b817d949f9cd9029937c3e467b4bdd16d0da4779/Incident%20Management-GenAI_Incident%20management_1.jpg)
+![Proposed Architecture](https://github.com/SridharChevendra/GenAI-DriverAssistant/tree/29ca00ada2c8070f1460274530e8ce5e99336579/architecture)
 
 ### Description
 AI for initial incident assessment, damaged parts identification, cost estimation, and provider claim verification. This demonstrates the transformative potential of Generative AI in the roadside assistance and accident management industry, where timely service is crucial for customer satisfaction, retention, and brand loyalty.

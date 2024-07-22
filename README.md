@@ -2,7 +2,6 @@
 
 Building a Digital Driver Assistant with Generative AI model.
 
-Architecture Diagram 
 ![Proposed Architecture](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/b817d949f9cd9029937c3e467b4bdd16d0da4779/Incident%20Management-GenAI_Incident%20management_1.jpg)
 
 ## Getting Started

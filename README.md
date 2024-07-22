@@ -18,7 +18,7 @@ AI for initial incident assessment, damaged parts identification, cost estimatio
 Create a folder names "driverAssist"
 
 ```
-mkdir driverAssist && cd driverAssit
+mkdir driverAssist && cd driverAssist
 
 ```
 Clone the GitRepo to your local machine.

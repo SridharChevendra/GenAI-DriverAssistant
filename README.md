@@ -23,8 +23,8 @@ mkdir driverAssist && cd driverAssit
 ```
 Clone the GitRepo to your local machine.
 ```
-git clone https://github.com/SridharChevendra/eventBridgeCodeBuild.git
-cd eventBridgeCodeBuild
+git clone https://github.com/SridharChevendra/GenAI-DriverAssistant.git
+cd GenAI-DriverAssistant
 ```
 #### 2. AWS stack deployment
 * Login to your AWS account

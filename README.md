@@ -39,8 +39,25 @@ cd GenAI-DriverAssistant
 * Append **"/carinfo"** to the URL. if the output is **"Hello from Carinfo Lambda!"**, proceed to next step to upload lambda code.
 
 #### 4. Upload Lambda code
+* Go to Lamba service
+* Search for **"claimsLambda"** . upload the **"/Code/lambda/chatbot.zip"** file to the lambda function and deploy the function.
+* Similarly, search for **"carInfoLambda"**. upload **"/Code/lambda/carinfo.zip"** to the lambda function and deploy the function.
 
 #### 5. Setup UI
+UI is based on streamlit. If your local laptop has AWS environment setup along with python, follow the steps below.
+* Install the following python modules
+  ```
+  pip install boto3
+  pip install requests
+  pip install vin-decoder-nhtsa
+  pip install streamlist==1.26.0
+  ```
+* Go to /Code/frontEnd/front_end_v7.py
+* Start the UI
+  ```
+  streamlit run front_end_v7.py
+  ```
+##### Optional: Buidling front end on sagemaker studio
 * Login into your sagemaker studio. Go to Terminal
 * Ensure role has access to the S3 bucket that created part of the stack.
 * Install the following python modules
@@ -48,21 +65,23 @@ cd GenAI-DriverAssistant
   pip install boto3
   pip install requests
   pip install vin-decoder-nhtsa
-  pip install streamlist ==1.26.0
+  pip install streamlist==1.26.0
   ```
 * Upload the file front_end_v7.py
 * Start the UI
   ```
   streamlit run front_end_v7.py
   ```
-![UI](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/9a56f81925c150a67897b04dedf8d0ef3f51879f/Builderspace.PNG)
-
 #### 6. Access UI
+If you are using your laptop for streamlit application, use https://localhost:8501.
+
+For the Sagemaker studio setup,
+
 * On the Sagemaker studio url copy until default/ and append proxy/8501/
   - Example:
     - ** "https://<xxxxx>.studio.us-east-1.sagemaker.aws/jupyter/default/" replace with
       ** "https://<xxxxx>.studio.us-east-1.sagemaker.aws/jupyter/default/proxy/8501/"
-  
+  ![UI](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/9a56f81925c150a67897b04dedf8d0ef3f51879f/Builderspace.PNG)
 
 #### 7. Cleanup
 * Go to Sagemaker studio terminal window. <Ctrl>+C to kill the front_end_v7.py

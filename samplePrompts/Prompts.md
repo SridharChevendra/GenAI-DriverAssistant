@@ -11,7 +11,7 @@ Part,Replacement Needed Front Bumper,Yes Hood,Yes Front Quarter Panels,Yes Headl
 ##### Agent: Based on image, the list of likely replacement components in table format
 
 *Assistant: Based on the image, which appears to show a severe car accident with a damaged vehicle and emergency services present, the likely replacement components needed are:*
-
+![Table](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/db881d3b7503eacde4f77a8e216493288689603f/images/promptsTable.png)
 
 *Please note that a thorough inspection by a qualified mechanic would be necessary to assess the full extent of the damage and determine the exact replacement parts required.*
 

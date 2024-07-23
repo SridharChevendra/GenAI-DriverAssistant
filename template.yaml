@@ -1,8 +1,5 @@
 Transform: AWS::Serverless-2016-10-31
 Parameters:
-  AwsAccountName:
-    Type: String
-    Description: AWS account name for S3 bucket prefix
   EnvironmentName:
     Type: String
     Default: dev
@@ -30,7 +27,7 @@ Resources:
   S3Bucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub dda-${AwsAccountName}-${AWS::AccountId}
+      BucketName: !Sub dda-${AWS::AccountId}
 
   Api:
     Type: AWS::Serverless::Api
@@ -38,7 +35,7 @@ Resources:
       Name: !Sub
         - ${ResourceName} From Stack ${AWS::StackName}
         - ResourceName: Api
-      StageName: Prod
+      StageName: !Sub ${EnvironmentName}
       DefinitionBody:
         openapi: '3.0'
         info: {}
@@ -48,25 +45,25 @@ Resources:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda1.Arn}/invocations
+                uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${claimsLambda.Arn}/invocations
               responses: {}
           /carinfo:
             get:
               x-amazon-apigateway-integration:
                 httpMethod: POST
                 type: aws_proxy
-                uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${Lambda2.Arn}/invocations
+                uri: !Sub arn:${AWS::Partition}:apigateway:${AWS::Region}:lambda:path/2015-03-31/functions/${carInfoLambda.Arn}/invocations
               responses: {}
       EndpointConfiguration: REGIONAL
       TracingEnabled: true
       Cors:
         MaxAge: 5
-  Lambda1:
+  claimsLambda:
     Type: AWS::Serverless::Function
     Properties:
       Description: !Sub
         - Stack ${AWS::StackName} Function ${ResourceName}
-        - ResourceName: Lambda1
+        - ResourceName: claimsLambda
       InlineCode: |
         import json
         def handler(event, context):
@@ -80,6 +77,9 @@ Resources:
       Timeout: 30
       Tracing: Active
       Role: !GetAtt LambdaExecutionRole.Arn
+      Environment:
+        Variables:
+          S3_BUCKET_NAME: !Ref S3Bucket
       Events:
         ApiGETclaims:
           Type: Api
@@ -88,17 +88,17 @@ Resources:
             Method: GET
             RestApiId: !Ref Api
 
-  Lambda1LogGroup:
+  claimsLambdaLogGroup:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain
     Properties:
-      LogGroupName: !Sub /aws/lambda/${Lambda1}
-  Lambda2:
+      LogGroupName: !Sub /aws/lambda/${claimsLambda}
+  carInfoLambda:
     Type: AWS::Serverless::Function
     Properties:
       Description: !Sub
         - Stack ${AWS::StackName} Function ${ResourceName}
-        - ResourceName: Lambda2
+        - ResourceName: carInfoLambda
       InlineCode: |
         import json
         def handler(event, context):
@@ -111,7 +111,10 @@ Resources:
       MemorySize: 3008
       Timeout: 30
       Tracing: Active
-      Role: !GetAtt LambdaExecutionRole.Arn
+      Role: !GetAtt LambdaExecutionRole.Arn 
+      Environment:
+        Variables:
+          S3_BUCKET_NAME: !Ref S3Bucket
       Events:
         ApiGETcarinfo:
           Type: Api
@@ -120,49 +123,8 @@ Resources:
             Method: GET
             RestApiId: !Ref Api
   
-  Lambda2LogGroup:
+  carInfoLambdaLogGroup:
     Type: AWS::Logs::LogGroup
     DeletionPolicy: Retain
     Properties:
-      LogGroupName: !Sub /aws/lambda/${Lambda2}
-
-  EC2Instance:
-    Type: AWS::EC2::Instance
-    Properties:
-      ImageId: ami-0aa7d40eeae50c9a9 # Amazon Linux 2 AMI
-      InstanceType: t2.nano
-      SecurityGroupIds:
-        - !Ref InstanceSecurityGroup
-      SubnetId: !Ref PublicSubnet
-
-  InstanceSecurityGroup:
-    Type: AWS::EC2::SecurityGroup
-    Properties:
-      GroupDescription: Allow HTTP on port 8081
-      SecurityGroupIngress:
-        - IpProtocol: tcp
-          FromPort: 8081
-          ToPort: 8081
-          CidrIp: 0.0.0.0/0
-      VpcId: !Ref DefaultVPC
-
-  PublicSubnet:
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref DefaultVPC
-      AvailabilityZone: !Select
-        - 0
-        - !GetAZs ''
-      MapPublicIpOnLaunch: true
-      CidrBlock: 10.0.0.0/24
-
-  DefaultVPC:
-    Type: AWS::EC2::VPC
-    Properties:
-      CidrBlock: 10.0.0.0/16
-      EnableDnsHostnames: true
-      EnableDnsSupport: true
-      InstanceTenancy: default
-      Tags:
-        - Key: Name
-          Value: DefaultVPC
+      LogGroupName: !Sub /aws/lambda/${carInfoLambda}

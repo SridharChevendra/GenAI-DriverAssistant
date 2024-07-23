@@ -79,9 +79,10 @@ For the Sagemaker studio setup,
 
 * On the Sagemaker studio url copy until default/ and append proxy/8501/
   - Example:
-    - ** "https://<xxxxx>.studio.us-east-1.sagemaker.aws/jupyter/default/" replace with
+    - ** "https://<xxxxx>.studio.us-east-1.sagemaker.aws/jupyter/default/" replace
+      with
       ** "https://<xxxxx>.studio.us-east-1.sagemaker.aws/jupyter/default/proxy/8501/"
-  ![UI](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/9a56f81925c150a67897b04dedf8d0ef3f51879f/Builderspace.PNG)
+ ![UI](https://github.com/SridharChevendra/GenAI-DriverAssistant/blob/fd481952baa499bee0d2f6690dd37a242a91e247/images/driverAssistantUI.JPG)
 
 #### 7. Cleanup
 * Go to Sagemaker studio terminal window. <Ctrl>+C to kill the front_end_v7.py

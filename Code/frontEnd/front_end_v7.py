@@ -12,7 +12,7 @@ from vin_decoder_nhtsa.decoder import Vin
 # variables
 # Replace the below with your own values
 
-s3_bucket = '<<S3 BUCKET NAME>.'
+s3_bucket = '<<S3 BUCKET NAME>>'
 s3_prefix = 'images/'
 
 api_gw_url = 'https://<<API END POINT>>/dev/claims'

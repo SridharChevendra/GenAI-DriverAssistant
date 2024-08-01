@@ -50,7 +50,7 @@ UI is based on streamlit. If your local laptop has AWS environment setup along w
   pip install boto3
   pip install requests
   pip install vin-decoder-nhtsa
-  pip install streamlist==1.26.0
+  pip install streamlit==1.26.0
   ```
 * Go to /Code/frontEnd/front_end_v7.py
 * Replace "<< S3 BUCKET NAME >>" with S3 bucket name created by the cloudformation

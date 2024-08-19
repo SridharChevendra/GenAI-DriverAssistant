@@ -58,6 +58,7 @@ UI is based on streamlit. If your local laptop has AWS environment setup along w
 * Save the changes
 * Start the UI
   ```
+  cd /Code/frontEnd
   streamlit run front_end_v7.py
   ```
 ##### Optional: Buidling front end on sagemaker studio
@@ -76,6 +77,7 @@ UI is based on streamlit. If your local laptop has AWS environment setup along w
 * Save the changes
 * Start the UI
   ```
+  cd /Code/frontEnd
   streamlit run front_end_v7.py
   ```
 #### 6. Access UI

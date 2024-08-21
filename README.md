@@ -71,7 +71,7 @@ UI is based on streamlit. If your local laptop has AWS environment setup along w
   pip install vin-decoder-nhtsa
   pip install streamlist==1.26.0
   ```
-* Upload frontEnd directory
+* Upload the contents of frontEnd directory
 * Open file front_end_v7.py
   - Replace "<< S3 BUCKET NAME >>" with S3 bucket name created by the cloudformation
   - Replace "<< API END POINT >>" with API gateway end point created by the cloudformation
